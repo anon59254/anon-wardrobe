@@ -15,40 +15,121 @@
   .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
            gap:20px; max-width:1080px; margin:26px auto 50px; padding:0 18px; }
   .card { background:var(--card); border:1px solid var(--line); border-radius:14px;
-           overflow:hidden; box-shadow:0 2px 10px rgba(120,80,70,.06); }
-  .card img { width:100%; aspect-ratio:3/4; object-fit:cover; object-position:top; display:block;
-               background:#f3e9e4; }
+           overflow:hidden; box-shadow:0 2px 10px rgba(120,80,70,.06); cursor:pointer;
+           transition:transform .15s ease; }
+  .card:hover { transform:translateY(-3px); }
+  .cover { position:relative; aspect-ratio:3/4; background:#f3e9e4; }
+  .cover img, .cover video { width:100%; height:100%; object-fit:cover; object-position:top; display:block; }
+  .badge { position:absolute; right:8px; top:8px; background:rgba(0,0,0,.55); color:#fff;
+            font-size:11px; padding:2px 8px; border-radius:999px; }
   .meta { padding:12px 14px 14px; }
   .date { display:inline-block; background:var(--accent); color:#fff; font-size:12px;
            padding:2px 9px; border-radius:999px; margin-bottom:7px; }
   .desc { font-size:14px; line-height:1.55; }
   footer { text-align:center; color:#a08d86; font-size:12px; padding:0 16px 34px; }
-  a { color:var(--accent); text-decoration:none; }
+  /* modal */
+  #modal { display:none; position:fixed; inset:0; z-index:50; background:rgba(40,25,25,.72);
+            align-items:center; justify-content:center; padding:18px; }
+  #modal.open { display:flex; }
+  .sheet { background:var(--card); border-radius:18px; max-width:860px; width:100%;
+            max-height:92vh; overflow:auto; padding:18px; position:relative; }
+  .sheet h2 { margin:2px 0 4px; font-size:18px; }
+  .sheet .sub { color:#8a7a74; font-size:13px; margin-bottom:12px; }
+  #stage { background:#f3e9e4; border-radius:12px; overflow:hidden; aspect-ratio:3/4;
+            max-height:56vh; margin:0 auto; max-width:420px; }
+  #stage video, #stage img { width:100%; height:100%; object-fit:cover; object-position:top; display:block; }
+  .states { display:flex; flex-wrap:wrap; gap:8px; margin:14px 0 4px; justify-content:center; }
+  .states button { border:1px solid var(--line); background:#fff; color:var(--ink);
+            font-size:13px; padding:6px 14px; border-radius:999px; cursor:pointer; }
+  .states button.on { background:var(--accent); border-color:var(--accent); color:#fff; }
+  .close { position:absolute; top:10px; right:12px; border:none; background:#0008; color:#fff;
+            width:32px; height:32px; border-radius:50%; font-size:16px; cursor:pointer; }
+  .hint { text-align:center; color:#a08d86; font-size:12px; margin-top:8px; }
 </style>
 </head>
 <body>
 <header>
   <h1>👗 爱音的衣柜</h1>
-  <p>千早愛音的每日穿搭存档 · 共 4 套</p>
+  <p>千早愛音的每日穿搭存档 · 共 4 套 · 点击卡片查看动态版</p>
 </header>
 <div class="grid">
-  <div class="card">
-    <a href="outfits/2026-10-03-morning-oatmeal-cardigan-beret.webp"><img src="outfits/2026-10-03-morning-oatmeal-cardigan-beret.webp" alt="燕麦色针织开衫 + 条纹T恤 + 浅蓝牛仔裙 + 白色运动鞋，米色贝雷帽，周末清爽出门风" loading="lazy"></a>
-    <div class="meta"><span class="date">2026-10-03</span><div class="desc">燕麦色针织开衫 + 条纹T恤 + 浅蓝牛仔裙 + 白色运动鞋，米色贝雷帽，周末清爽出门风</div></div>
+  <div class="card" onclick="openModal(0)">
+    <div class="cover"><video src="outfits/2026-10-03-morning-oatmeal-cardigan-beret-idle.mp4" autoplay muted loop playsinline preload="metadata" poster="outfits/2026-10-03-morning-oatmeal-cardigan-beret.webp"></video><span class="badge">▶ 动态</span></div>
+    <div class="meta"><span class="date">2026-10-03 · 早</span><div class="desc">燕麦色针织开衫 + 条纹T恤 + 浅蓝牛仔裙 + 白色运动鞋，米色贝雷帽，周末清爽出门风</div></div>
   </div>
-  <div class="card">
-    <a href="outfits/2026-10-02-pumpkin-turtleneck-denim-jumper.webp"><img src="outfits/2026-10-02-pumpkin-turtleneck-denim-jumper.webp" alt="南瓜色高领毛衣 + 牛仔背带裙 + 棕色长筒靴 + 枫叶发卡，雨过天晴的秋日出游风" loading="lazy"></a>
+  <div class="card" onclick="openModal(1)">
+    <div class="cover"><video src="outfits/2026-10-02-pumpkin-turtleneck-denim-jumper-idle.mp4" autoplay muted loop playsinline preload="metadata" poster="outfits/2026-10-02-pumpkin-turtleneck-denim-jumper.webp"></video><span class="badge">▶ 动态</span></div>
     <div class="meta"><span class="date">2026-10-02</span><div class="desc">南瓜色高领毛衣 + 牛仔背带裙 + 棕色长筒靴 + 枫叶发卡，雨过天晴的秋日出游风</div></div>
   </div>
-  <div class="card">
-    <a href="outfits/2026-10-01-camel-trench-umbrella.webp"><img src="outfits/2026-10-01-camel-trench-umbrella.webp" alt="浅驼色短风衣 + 白色连衣裙 + 透明雨伞，秋日雨天出门风" loading="lazy"></a>
+  <div class="card" onclick="openModal(2)">
+    <div class="cover"><img src="outfits/2026-10-01-camel-trench-umbrella.webp" alt="浅驼色短风衣 + 白色连衣裙 + 透明雨伞，秋日雨天出门风" loading="lazy"></div>
     <div class="meta"><span class="date">2026-10-01</span><div class="desc">浅驼色短风衣 + 白色连衣裙 + 透明雨伞，秋日雨天出门风</div></div>
   </div>
-  <div class="card">
-    <a href="outfits/2026-09-30-pink-cardigan.webp"><img src="outfits/2026-09-30-pink-cardigan.webp" alt="粉色针织开衫 + 白衬衫 + 深色百褶裙，挂耳机拿游戏机" loading="lazy"></a>
+  <div class="card" onclick="openModal(3)">
+    <div class="cover"><img src="outfits/2026-09-30-pink-cardigan.webp" alt="粉色针织开衫 + 白衬衫 + 深色百褶裙，挂耳机拿游戏机" loading="lazy"></div>
     <div class="meta"><span class="date">2026-09-30</span><div class="desc">粉色针织开衫 + 白衬衫 + 深色百褶裙，挂耳机拿游戏机</div></div>
   </div>
 </div>
-<footer>每天上午自动换新装 · Anon's Wardrobe</footer>
+<div id="modal">
+  <div class="sheet">
+    <button class="close" onclick="closeModal()">✕</button>
+    <h2 id="mTitle"></h2>
+    <div class="sub" id="mSub"></div>
+    <div id="stage"></div>
+    <div class="states" id="mStates"></div>
+    <div class="hint">ESC 或点击空白处关闭</div>
+  </div>
+</div>
+<footer>每天早中晚自动换新装 · Anon's Wardrobe</footer>
+<script>
+const OUTFITS = [{"date": "2026-10-03 · 早", "desc": "燕麦色针织开衫 + 条纹T恤 + 浅蓝牛仔裙 + 白色运动鞋，米色贝雷帽，周末清爽出门风", "img": "outfits/2026-10-03-morning-oatmeal-cardigan-beret.webp", "videos": {"idle": "outfits/2026-10-03-morning-oatmeal-cardigan-beret-idle.mp4", "connecting": "outfits/2026-10-03-morning-oatmeal-cardigan-beret-idle.mp4", "making_something": "outfits/2026-10-03-morning-oatmeal-cardigan-beret-making_something.mp4", "milestone_level_up": "outfits/2026-10-03-morning-oatmeal-cardigan-beret-milestone_level_up.mp4", "working": "outfits/2026-10-03-morning-oatmeal-cardigan-beret-working.mp4", "waiting_for_subagents": "outfits/2026-10-03-morning-oatmeal-cardigan-beret-working.mp4"}}, {"date": "2026-10-02", "desc": "南瓜色高领毛衣 + 牛仔背带裙 + 棕色长筒靴 + 枫叶发卡，雨过天晴的秋日出游风", "img": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper.webp", "videos": {"idle": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper-idle.mp4", "connecting": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper-idle.mp4", "making_something": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper-making_something.mp4", "milestone_level_up": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper-milestone_level_up.mp4", "working": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper-working.mp4", "waiting_for_subagents": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper-working.mp4"}}, {"date": "2026-10-01", "desc": "浅驼色短风衣 + 白色连衣裙 + 透明雨伞，秋日雨天出门风", "img": "outfits/2026-10-01-camel-trench-umbrella.webp", "videos": {}}, {"date": "2026-09-30", "desc": "粉色针织开衫 + 白衬衫 + 深色百褶裙，挂耳机拿游戏机", "img": "outfits/2026-09-30-pink-cardigan.webp", "videos": {}}];
+const LABELS = {"idle": "待机", "connecting": "连接中", "making_something": "创作中", "milestone_level_up": "升级庆祝", "working": "工作中", "waiting_for_subagents": "等待中"};
+function openModal(i) {
+  const o = OUTFITS[i];
+  document.getElementById('mTitle').textContent = o.date;
+  document.getElementById('mSub').textContent = o.desc;
+  const st = document.getElementById('mStates');
+  st.innerHTML = '';
+  const stage = document.getElementById('stage');
+  const keys = Object.keys(o.videos);
+  function showVideo(v) {
+    stage.innerHTML = '<video src="'+o.videos[v]+'" autoplay loop muted playsinline controls></video>';
+  }
+  function showStill() {
+    stage.innerHTML = '<img src="'+o.img+'">';
+  }
+  if (keys.length) {
+    keys.forEach((v, idx) => {
+      const b = document.createElement('button');
+      b.textContent = LABELS[v] || v;
+      b.onclick = () => { showVideo(v);
+        st.querySelectorAll('button').forEach(x=>x.classList.remove('on'));
+        b.classList.add('on'); };
+      if (idx === 0) b.classList.add('on');
+      st.appendChild(b);
+    });
+    const s = document.createElement('button');
+    s.textContent = '静帧';
+    s.onclick = () => { showStill();
+      st.querySelectorAll('button').forEach(x=>x.classList.remove('on'));
+      s.classList.add('on'); };
+    st.appendChild(s);
+    showVideo(keys[0]);
+  } else {
+    showStill();
+  }
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+  document.getElementById('stage').innerHTML = '';
+  document.body.style.overflow = '';
+}
+document.getElementById('modal').addEventListener('click', e => {
+  if (e.target.id === 'modal') closeModal();
+});
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
 </body>
 </html>
