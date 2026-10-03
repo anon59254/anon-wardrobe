@@ -50,7 +50,7 @@
 <body>
 <header>
   <h1>👗 爱音的衣柜</h1>
-  <p>千早愛音的每日穿搭存档 · 共 4 套 · 点击卡片查看动态版</p>
+  <p>千早愛音的每日穿搭存档 · 共 5 套 · 点击卡片查看动态版</p>
 </header>
 <div class="grid">
   <div class="card" onclick="openModal(0)">
@@ -58,14 +58,18 @@
     <div class="meta"><span class="date">2026-10-03 · 早</span><div class="desc">燕麦色针织开衫 + 条纹T恤 + 浅蓝牛仔裙 + 白色运动鞋，米色贝雷帽，周末清爽出门风</div></div>
   </div>
   <div class="card" onclick="openModal(1)">
+    <div class="cover"><img src="outfits/2026-10-03-midday-white-hoodie-cargo.webp" alt="白色oversize连帽卫衣 + 米色工装迷你短裙 + 白色棒球帽 + 厚底运动鞋，迷你双肩包，周末午后散步的运动休闲风" loading="lazy"></div>
+    <div class="meta"><span class="date">2026-10-03 · 午</span><div class="desc">白色oversize连帽卫衣 + 米色工装迷你短裙 + 白色棒球帽 + 厚底运动鞋，迷你双肩包，周末午后散步的运动休闲风</div></div>
+  </div>
+  <div class="card" onclick="openModal(2)">
     <div class="cover"><img src="outfits/2026-10-02-pumpkin-turtleneck-denim-jumper.webp" alt="南瓜色高领毛衣 + 牛仔背带裙 + 棕色长筒靴 + 枫叶发卡，雨过天晴的秋日出游风" loading="lazy"></div>
     <div class="meta"><span class="date">2026-10-02</span><div class="desc">南瓜色高领毛衣 + 牛仔背带裙 + 棕色长筒靴 + 枫叶发卡，雨过天晴的秋日出游风</div></div>
   </div>
-  <div class="card" onclick="openModal(2)">
+  <div class="card" onclick="openModal(3)">
     <div class="cover"><img src="outfits/2026-10-01-camel-trench-umbrella.webp" alt="浅驼色短风衣 + 白色连衣裙 + 透明雨伞，秋日雨天出门风" loading="lazy"></div>
     <div class="meta"><span class="date">2026-10-01</span><div class="desc">浅驼色短风衣 + 白色连衣裙 + 透明雨伞，秋日雨天出门风</div></div>
   </div>
-  <div class="card" onclick="openModal(3)">
+  <div class="card" onclick="openModal(4)">
     <div class="cover"><img src="outfits/2026-09-30-pink-cardigan.webp" alt="粉色针织开衫 + 白衬衫 + 深色百褶裙，挂耳机拿游戏机" loading="lazy"></div>
     <div class="meta"><span class="date">2026-09-30</span><div class="desc">粉色针织开衫 + 白衬衫 + 深色百褶裙，挂耳机拿游戏机</div></div>
   </div>
@@ -82,7 +86,7 @@
 </div>
 <footer>每天早中晚自动换新装 · Anon's Wardrobe</footer>
 <script>
-const OUTFITS = [{"date": "2026-10-03 · 早", "desc": "燕麦色针织开衫 + 条纹T恤 + 浅蓝牛仔裙 + 白色运动鞋，米色贝雷帽，周末清爽出门风", "img": "outfits/2026-10-03-morning-oatmeal-cardigan-beret.webp", "videos": {"idle": "outfits/2026-10-03-morning-oatmeal-cardigan-beret-idle.mp4", "connecting": "outfits/2026-10-03-morning-oatmeal-cardigan-beret-idle.mp4", "making_something": "outfits/2026-10-03-morning-oatmeal-cardigan-beret-making_something.mp4", "milestone_level_up": "outfits/2026-10-03-morning-oatmeal-cardigan-beret-milestone_level_up.mp4", "working": "outfits/2026-10-03-morning-oatmeal-cardigan-beret-working.mp4", "waiting_for_subagents": "outfits/2026-10-03-morning-oatmeal-cardigan-beret-working.mp4"}}, {"date": "2026-10-02", "desc": "南瓜色高领毛衣 + 牛仔背带裙 + 棕色长筒靴 + 枫叶发卡，雨过天晴的秋日出游风", "img": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper.webp", "videos": {"idle": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper-idle.mp4", "connecting": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper-idle.mp4", "making_something": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper-making_something.mp4", "milestone_level_up": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper-milestone_level_up.mp4", "working": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper-working.mp4", "waiting_for_subagents": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper-working.mp4"}}, {"date": "2026-10-01", "desc": "浅驼色短风衣 + 白色连衣裙 + 透明雨伞，秋日雨天出门风", "img": "outfits/2026-10-01-camel-trench-umbrella.webp", "videos": {}}, {"date": "2026-09-30", "desc": "粉色针织开衫 + 白衬衫 + 深色百褶裙，挂耳机拿游戏机", "img": "outfits/2026-09-30-pink-cardigan.webp", "videos": {}}];
+const OUTFITS = [{"date": "2026-10-03 · 早", "desc": "燕麦色针织开衫 + 条纹T恤 + 浅蓝牛仔裙 + 白色运动鞋，米色贝雷帽，周末清爽出门风", "img": "outfits/2026-10-03-morning-oatmeal-cardigan-beret.webp", "videos": {"idle": "outfits/2026-10-03-morning-oatmeal-cardigan-beret-idle.mp4", "connecting": "outfits/2026-10-03-morning-oatmeal-cardigan-beret-idle.mp4", "making_something": "outfits/2026-10-03-morning-oatmeal-cardigan-beret-making_something.mp4", "milestone_level_up": "outfits/2026-10-03-morning-oatmeal-cardigan-beret-milestone_level_up.mp4", "working": "outfits/2026-10-03-morning-oatmeal-cardigan-beret-working.mp4", "waiting_for_subagents": "outfits/2026-10-03-morning-oatmeal-cardigan-beret-working.mp4"}}, {"date": "2026-10-03 · 午", "desc": "白色oversize连帽卫衣 + 米色工装迷你短裙 + 白色棒球帽 + 厚底运动鞋，迷你双肩包，周末午后散步的运动休闲风", "img": "outfits/2026-10-03-midday-white-hoodie-cargo.webp", "videos": {}}, {"date": "2026-10-02", "desc": "南瓜色高领毛衣 + 牛仔背带裙 + 棕色长筒靴 + 枫叶发卡，雨过天晴的秋日出游风", "img": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper.webp", "videos": {"idle": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper-idle.mp4", "connecting": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper-idle.mp4", "making_something": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper-making_something.mp4", "milestone_level_up": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper-milestone_level_up.mp4", "working": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper-working.mp4", "waiting_for_subagents": "outfits/2026-10-02-pumpkin-turtleneck-denim-jumper-working.mp4"}}, {"date": "2026-10-01", "desc": "浅驼色短风衣 + 白色连衣裙 + 透明雨伞，秋日雨天出门风", "img": "outfits/2026-10-01-camel-trench-umbrella.webp", "videos": {}}, {"date": "2026-09-30", "desc": "粉色针织开衫 + 白衬衫 + 深色百褶裙，挂耳机拿游戏机", "img": "outfits/2026-09-30-pink-cardigan.webp", "videos": {}}];
 const LABELS = {"idle": "待机", "connecting": "连接中", "making_something": "创作中", "milestone_level_up": "升级庆祝", "working": "工作中", "waiting_for_subagents": "等待中"};
 function openModal(i) {
   const o = OUTFITS[i];
